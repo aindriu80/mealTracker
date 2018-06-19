@@ -14,7 +14,73 @@
 </head>
 
 <body>
-    <h1>jQuery Mobile Boiler</h1>
+    <!-- HomePage-->
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <h1>MealTracker</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#home" data-transition="slideup">Meals</a>
+                    </li>
+                    <li>
+                        <a href="#add" data-transition="slideup">Add</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="main" class="ui-content">
+            <ul id="meals" data-role="listview"></ul>
+            <br>
+            <br>
+            <ul id="calorieDisplay" data-role="listview"></ul>
+        </div>
+        <div data-role="footer" style="text-align: center">
+            <p>MealTracker &copy; 2018</p>
+
+        </div>
+    </div>
+
+    <!-- Add Page-->
+    <div data-role="page" id="add">
+        <div data-role="header">
+            <h1>MealTracker</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#home" data-transition="slideup">Meals</a>
+                    </li>
+                    <li>
+                        <a href="#add" data-transition="slideup">Add</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="main" class="ui-content">
+            <form id="mealForm">
+                <label for="tagline">Tagline*</label>
+                <input type="text" id="tagline" required>
+                <label for="tagline">Meal Type*</label>
+                <select id="type" required>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snack">Snack</option>
+                </select>
+                <label for="date">Date*</label>
+                <input type="date" id="date" required>
+                <label for="calories">Calories*</label>
+                <input type="text" id="calories" required>
+                <label for="description">Description</label>
+                <textarea id="description"></textarea>
+                <input type="submit" value="Save">
+            </form>
+        </div>
+        <div data-role="footer" style="text-align: center">
+            <p>MealTracker &copy; 2018</p>
+
+        </div>
+    </div>
 </body>
 <script src="js/main.js"></script>
 
