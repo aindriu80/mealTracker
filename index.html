@@ -37,12 +37,11 @@
         </div>
         <div data-role="footer" style="text-align: center">
             <p>MealTracker &copy; 2018</p>
-
         </div>
     </div>
 
     <!-- Add Page-->
-    <div data-role="page" id="add">
+    <div data-role="page" id="add" data-theme="b">
         <div data-role="header">
             <h1>MealTracker</h1>
             <div data-role="navbar">
@@ -78,8 +77,34 @@
         </div>
         <div data-role="footer" style="text-align: center">
             <p>MealTracker &copy; 2018</p>
-
         </div>
+
+        <!-- Meal Page-->
+        <div data-role="page" id="meal">
+            <div data-role="header">
+                <a href="#home" class="ui-btn ui-btn-icon-left">Back</a>
+                <h1>MealTracker</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#home" data-transition="slideup">Meals</a>
+                        </li>
+                        <li>
+                            <a href="#add" data-transition="slideup">Add</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="main" class="ui-content">
+                <div id="mealDetails"></div>
+            </div>
+            <div data-role="footer" style="text-align: center">
+                <p>MealTracker &copy; 2018</p>
+
+            </div>
+        </div>
+
+
     </div>
 </body>
 <script src="js/main.js"></script>

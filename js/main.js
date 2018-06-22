@@ -19,6 +19,11 @@ $(document).on("pagebeforeshow", "#home", function() {
   getMeals();
 });
 
+// Before Details loads
+$(document).on("pagebeforeshow", "#meal", function() {
+  getMeal();
+});
+
 // Generate ID
 function guidGenerator() {
   var S4 = function() {
@@ -89,4 +94,37 @@ function getMeals() {
 function mealClicked(mealId) {
   sessionStorage.setItem("mealId", mealId);
   $.mobile.changePage("#meal");
+}
+
+function getMeal() {
+  if (sessionStorage.getItem("mealId") === null) {
+    $.mobile.changePage("#home");
+  } else {
+    let meals = JSON.parse(localStorage.getItem("meals"));
+    $.each(meals, function(index, meal) {
+      if (meal.id === sessionStorage.getItem("mealId")) {
+        let output = `
+        <h1>${meal.tagline}</h1>
+        <small>${meal.type} On ${meal.date}</small>
+        <p>${meal.description}</p>
+        <p><strong>Calories:</strong>${meal.calories}</p>
+        <button onclick="deleteMeal('${
+          meal.id
+        }')" class="ui-btn">Delete Meal</a>
+        `;
+        $("#mealDetails").html(output);
+      }
+    });
+  }
+}
+
+function deleteMeal(mealId) {
+  let meals = JSON.parse(localStorage.getItem("meals"));
+  $.each(meals, function(index, meal) {
+    if (meal.id === sessionStorage.getItem("mealId")) {
+      meals.splice(index, 1);
+    }
+  });
+  localStorage.setItem("meals", JSON.stringify(meals));
+  $.mobile.changePage("#home");
 }
