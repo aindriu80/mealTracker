@@ -17,6 +17,7 @@ $(document).ready(function() {
 // Before Homepage loads
 $(document).on("pagebeforeshow", "#home", function() {
   getMeals();
+  getCalories();
 });
 
 // Before Details loads
@@ -69,7 +70,7 @@ function addMeal(meal) {
 function getMeals() {
   let output = "";
   if (
-    localStorage.getItem("meals") == null ||
+    localStorage.getItem("meals") === null ||
     localStorage.getItem("meals") == "[]"
   ) {
     output = "<li>No Meals found</li>";
@@ -96,6 +97,7 @@ function mealClicked(mealId) {
   $.mobile.changePage("#meal");
 }
 
+// Get Meal details
 function getMeal() {
   if (sessionStorage.getItem("mealId") === null) {
     $.mobile.changePage("#home");
@@ -118,6 +120,7 @@ function getMeal() {
   }
 }
 
+// Delete Meal from LS
 function deleteMeal(mealId) {
   let meals = JSON.parse(localStorage.getItem("meals"));
   $.each(meals, function(index, meal) {
@@ -127,4 +130,26 @@ function deleteMeal(mealId) {
   });
   localStorage.setItem("meals", JSON.stringify(meals));
   $.mobile.changePage("#home");
+}
+
+// Get Calorie Count
+function getCalories() {
+  let output = "";
+  if (localStorage.getItem("meals") === null) {
+    output = '<li style="text-align:center">Total Calories: 0</li>';
+    $("#calorieDisplay")
+      .html(output)
+      .listview("refresh");
+  } else {
+    let meals = JSON.parse(localStorage.getItem("meals"));
+    let calories = 0;
+    $.each(meals, function(index, meal) {
+      calories = calories + parseInt(meal.calories);
+    });
+    output =
+      '<li style="text-align:center">Total Calories: ' + calories + "</li>";
+    $("#calorieDisplay")
+      .html(output)
+      .listview("refresh");
+  }
 }
